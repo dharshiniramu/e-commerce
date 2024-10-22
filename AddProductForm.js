@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
 const AddProductForm = () => {
+
+ // const navigate = useNavigate();
+  const location = useLocation(); // Get location from useLocation hook
+  const email = location.state?.email; 
   const [product, setProduct] = useState({
     name: '',
     category: '',
@@ -9,7 +14,8 @@ const AddProductForm = () => {
     image: null,
     description: '',
     price: '',
-    comment: ''
+    comment: '',
+    vendorEmail: ''
   });
 
   const [submitStatus, setSubmitStatus] = useState(null);
@@ -49,6 +55,7 @@ const AddProductForm = () => {
     formData.append('description', product.description);
     formData.append('price', product.price);
     formData.append('comment', product.comment);
+    formData.append('vendorEmail', email);
 
     try {
       await axios.post('http://localhost:5000/api/products', formData, {
