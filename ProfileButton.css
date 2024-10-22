@@ -1,0 +1,36 @@
+/* Style for the profile button */
+.profile-button {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Style for the dropdown list */
+  .profile-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 1000; /* Ensure it is on top of other content */
+  }
+  
+  /* Show dropdown on hover */
+  .profile-button:hover .profile-dropdown,
+  .profile-dropdown:hover {
+    display: block;
+  }
+  
+  /* Style for dropdown items */
+  .profile-dropdown a {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: black;
+  }
+  
+  /* Change color on hover */
+  .profile-dropdown a:hover {
+    background-color: #f1f1f1;
+  }
+  

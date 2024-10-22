@@ -1,0 +1,127 @@
+/* AuthForm.css */
+
+.auth-container {
+  width: 400px; /* Increase the width to make the form container broader */
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.toggle-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.toggle-switch {
+  width: 250px; /* Increase the width to maintain proportion with the container */
+  height: 50px;
+  background-color: #f2f2f2;
+  border-radius: 25px;
+  padding: 5px;
+  position: relative;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+}
+
+.toggle-btn {
+  flex: 1;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+  cursor: pointer;
+  border: none;
+  background: none;
+  z-index: 2;
+  transition: color 0.3s ease;
+
+  /* Remove default browser focus/hover styles */
+  outline: none;
+  box-shadow: none;
+  color: inherit; /* Prevent color change on hover or active */
+}
+
+.toggle-btn:focus,
+.toggle-btn:active {
+  outline: none; /* Remove the blue outline on focus */
+  box-shadow: none; /* Remove any browser-added shadows */
+  color: inherit; /* Keep the text color consistent */
+}
+
+/* Optional: prevent hover from changing text color */
+.toggle-btn:hover {
+  color: inherit; 
+}
+
+.toggle-switch.login .toggle-btn:nth-child(1) {
+  color: #fff;
+}
+
+.toggle-switch.signup .toggle-btn:nth-child(2) {
+  color: #fff;
+}
+
+.toggle-switch::before {
+  content: "";
+  position: absolute;
+  width: 120px; /* Adjust the slider width to fit the new toggle switch width */
+  height: 40px;
+  border-radius: 25px;
+  background: #3498db;
+  transition: transform 0.3s ease;
+  top: 5px;
+  left: 5px;
+}
+
+.toggle-switch.login::before {
+  transform: translateX(0);
+}
+
+.toggle-switch.signup::before {
+  transform: translateX(120px); /* Adjust the translation based on the new toggle switch width */
+}
+
+.form-container {
+  text-align: center;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  font-size: 16px;
+  background-color: #f5f5f5;
+  outline: none;
+}
+
+.submit-button {
+  padding: 15px;
+  font-size: 16px;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  background: #3498db;
+  margin-top: 20px;
+}
+
+.submit-button:hover {
+  opacity: 0.9;
+}

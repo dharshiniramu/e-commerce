@@ -1,0 +1,153 @@
+/* General Body Style */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e9f5fb; /* Light blue background */
+    margin: 0;
+  }
+  
+  /* Wishlist Container */
+  .wishlist {
+    padding: 30px;
+    max-width: 800px;
+    margin: 20px auto; /* Centered with some margin */
+    background-color: #ffffff; /* White background for contrast */
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Deeper shadow for pop */
+  }
+  
+  /* Wishlist Heading */
+  .wishlist h1 {
+    text-align: center;
+    color: #2c3e50; /* Dark navy color for the heading */
+    font-size: 2.5rem; /* Larger font size */
+    margin-bottom: 20px;
+    text-transform: uppercase; /* Make the heading stand out */
+  }
+  
+  /* Wishlist Items List */
+  .wishlist-items {
+    list-style: none;
+    padding: 0;
+  }
+  
+  /* Individual Wishlist Item */
+  .wishlist-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 2px solid #3498db; /* Bold blue border for separation */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth transition */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f4f4f4; /* Light gray background for items */
+    flex-direction: column; /* Stack image and name vertically */
+    margin-right: 15px; /* Space between items */
+    text-align: center;
+  }
+  
+  .wishlist-item:hover {
+    transform: translateY(-5px); /* Slight lift effect on hover */
+    background-color: #d1e8e2; /* Soft green background on hover */
+  }
+  
+  /* Item Image */
+  .wishlist-item-image {
+    width: 100px; /* Fixed width */
+    height: 100px; /* Fixed height */
+    border-radius: 8px; /* Rounded corners */
+    object-fit: cover; /* Cover image */
+    margin-right: 15px; /* Space between image and text */
+  }
+  
+  /* Item Details */
+  .wishlist-item-details {
+    flex: 1;
+  }
+  
+  /* Item Name */
+  .wishlist-item-details h2 {
+    font-size: 1.5rem; /* Reasonable font size */
+    color: #2980b9; /* Blue color for the product name */
+    margin: 0; /* Remove default margin */
+    font-weight: bold; /* Bold font for emphasis */
+  }
+  
+  /* Item Price */
+  .wishlist-item-details p {
+    margin: 5px 0;
+    color: #e74c3c; /* Red color for the price */
+    font-size: 1.2rem; /* Slightly larger font size */
+  }
+  
+  /* Action Buttons */
+  .wishlist-item-details button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px; /* Space between buttons */
+    font-size: 1rem; /* Font size for buttons */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+  }
+  
+  /* Button Colors */
+  .wishlist-item-details button:nth-child(1) {
+    background-color: #2ecc71; /* Green for 'View Product' */
+    color: white;
+  }
+  
+  .wishlist-item-details button:nth-child(2) {
+    background-color: #e67e22; /* Orange for 'Remove' */
+    color: white;
+  }
+  
+  /* Button Hover Effects */
+  .wishlist-item-details button:hover {
+    transform: translateY(-2px); /* Slight lift on hover */
+  }
+  
+  .wishlist-item-details button:nth-child(1):hover {
+    background-color: #27ae60; /* Darker green on hover */
+  }
+  
+  .wishlist-item-details button:nth-child(2):hover {
+    background-color: #d35400; /* Darker orange on hover */
+  }
+  
+  /* Empty Wishlist Message */
+  .empty-wishlist {
+    text-align: center;
+    color: #888; /* Gray color for empty message */
+    margin: 20px 0;
+    font-size: 1.1rem;
+    font-weight: bold; /* Bold font for emphasis */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    .wishlist {
+      padding: 15px; /* Reduced padding for mobile */
+    }
+  
+    .wishlist-item {
+      flex-direction: column; /* Stack items on smaller screens */
+      align-items: flex-start; /* Align items to the start */
+    }
+  
+    .wishlist-item-image {
+      margin-bottom: 10px; /* Space below image */
+    }
+  }
+  .wishlist-container {
+      display: flex; /* Use flexbox to arrange items in a row */
+      overflow-x: auto; /* Allow horizontal scrolling */
+      padding: 10px; /* Add some padding */
+    }
+    .wishlist-item img {
+      width: 100px; /* Set a fixed width for images */
+      height: auto; /* Maintain aspect ratio */
+    }
+    
+    .wishlist-message {
+      color: green;
+      margin-top: 10px;
+    }

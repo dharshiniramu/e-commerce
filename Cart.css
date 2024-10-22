@@ -1,0 +1,129 @@
+/* General Body Style */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #e9f5fb; /* Light blue background */
+  margin: 0;
+}
+
+/* Cart Container */
+.cart {
+  padding: 30px;
+  max-width: 800px;
+  margin: 20px auto; /* Centered with some margin */
+  background-color: #ffffff; /* White background for contrast */
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Deeper shadow for pop */
+}
+
+/* Cart Heading */
+.cart h1 {
+  text-align: center;
+  color: #2c3e50; /* Dark navy color for the heading */
+  font-size: 2.5rem; /* Larger font size */
+  margin-bottom: 20px;
+  text-transform: uppercase; /* Make the heading stand out */
+}
+
+/* Cart Items List */
+.cart-items {
+  list-style: none;
+  padding: 0;
+}
+
+/* Individual Cart Item */
+.cart-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 2px solid #3498db; /* Bold blue border for separation */
+  transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth transition */
+  border-radius: 8px; /* Rounded corners */
+  background-color: #f4f4f4; /* Light gray background for items */
+  flex-direction: column; /* Stack image and name vertically */
+  text-align: center;
+}
+
+.cart-item:hover {
+  transform: translateY(-5px); /* Slight lift effect on hover */
+  background-color: #d1e8e2; /* Soft green background on hover */
+}
+
+/* Item Image */
+.cart-item-image {
+  width: 100px; /* Fixed width */
+  height: 100px; /* Fixed height */
+  border-radius: 8px; /* Rounded corners */
+  object-fit: cover; /* Cover image */
+  margin-bottom: 10px; /* Space below image */
+}
+
+/* Item Info */
+.cart-item-info {
+  flex: 1;
+}
+
+/* Item Name */
+.cart-item-name {
+  font-size: 1.5rem; /* Reasonable font size */
+  color: #2980b9; /* Blue color for the product name */
+  margin: 0; /* Remove default margin */
+  font-weight: bold; /* Bold font for emphasis */
+}
+
+/* Item Price */
+.cart-item-price {
+  margin: 5px 0;
+  color: #e74c3c; /* Red color for the price */
+  font-size: 1.2rem; /* Slightly larger font size */
+}
+
+/* Empty Cart Message */
+.empty-cart {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #777;
+  margin-top: 50px;
+}
+
+/* Cart Summary */
+.cart-summary {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.cart-summary h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Checkout Button */
+.checkout-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.checkout-button:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .cart-item {
+      flex-direction: column; /* Stack items on smaller screens */
+      align-items: flex-start; /* Align items to the start */
+  }
+
+  .cart-item-image {
+      margin-bottom: 10px; /* Space below image */
+  }
+}
