@@ -8,12 +8,12 @@ const Vendorprofile = () => {
 
   // Function to navigate to the product creation page
   const handleAddProduct = () => {
-    navigate('/addproductform', { state: { vendorId: vendorData.id } }); // Assuming vendorData has an id field
+    navigate('/addproductform', { state: { email: vendorData.email } }); // Assuming vendorData has an id field
   };
 
   // Function to navigate to the product list page
   const handleViewProducts = () => {
-    navigate('/view-products', { state: { vendorId: vendorData.id } }); // Assuming vendorData has an id field
+    navigate('/view-products', { state: { email: vendorData.email } }); // Assuming vendorData has an id field
   };
 
   return (
