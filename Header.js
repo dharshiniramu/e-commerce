@@ -1,18 +1,24 @@
+// Header.js
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FaShoppingCart, FaUser } from 'react-icons/fa';
-import { useCart } from './context/CartContext'; // Import the useCart hook
+import { useCart } from './context/CartContext';
 import './Header.css';
 
 const Header = () => {
-  const { getCartCount } = useCart(); // Access the cart count using the hook
+  const { getCartCount } = useCart();
+  const navigate = useNavigate();
 
-  // Function to handle scrolling to the footer
-  const scrollToFooter = () => {
-    const footer = document.getElementById('contact');
-    if (footer) {
-      footer.scrollIntoView({ behavior: 'smooth' });
-    }
+  const handleContactClick = (e) => {
+    e.preventDefault(); // Prevent default link behavior
+    navigate('/#contact'); // Navigate to home page with hash
+
+    setTimeout(() => {
+      const footer = document.getElementById('footer');
+      if (footer) {
+        footer.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100); // Allow navigation to home page before scrolling
   };
 
   return (
@@ -28,9 +34,9 @@ const Header = () => {
         <NavLink to="/wishlist" className="nav-link" activeClassName="active">
           Wishlist
         </NavLink>
-        <button onClick={scrollToFooter} className="nav-link" style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer' }}>
+        <a href="#contact" className="nav-link" onClick={handleContactClick} style={{ cursor: 'pointer' }}>
           Contact
-        </button>
+        </a>
       </nav>
       <div className="header-right">
         <div className="login-dropdown">
@@ -39,7 +45,8 @@ const Header = () => {
             <NavLink to="/login-customer" className="dropdown-item">Customer</NavLink>
             <NavLink to="/vendorregistrationform" className="dropdown-item">Seller</NavLink>
           </div>
-        </div>        <div className="user-dropdown">
+        </div>
+        <div className="user-dropdown">
           <FaUser />
           <div className="dropdown-content">
             <NavLink to="/profile" className="dropdown-item" activeClassName="active">Profile</NavLink>
@@ -51,7 +58,6 @@ const Header = () => {
           <FaShoppingCart />
           <span className="cart-count">{getCartCount()}</span>
         </NavLink>
-
       </div>
     </header>
   );
