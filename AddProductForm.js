@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
+import { useLocation,navigate, useNavigate } from 'react-router-dom';
 
 const AddProductForm = () => {
 
- // const navigate = useNavigate();
+  //const navigate = useNavigate();
   const location = useLocation(); // Get location from useLocation hook
   const email = location.state?.email; 
   const [product, setProduct] = useState({
@@ -17,7 +17,7 @@ const AddProductForm = () => {
     comment: '',
     vendorEmail: ''
   });
-
+  const navigate = useNavigate();
   const [submitStatus, setSubmitStatus] = useState(null);
   const [preview, setPreview] = useState(null);  // For image preview
 
@@ -64,6 +64,7 @@ const AddProductForm = () => {
         },
       });
       setSubmitStatus('success');
+      navigate('/');
     } catch (error) {
       console.error('There was an error submitting the form:', error);
       setSubmitStatus('error');
