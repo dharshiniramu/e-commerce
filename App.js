@@ -5,24 +5,23 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './Header';
 import Home from './Home';
 import ProductDetails from './ProductDetails';
-import Cart from './Cart'; // Import Cart component
+import Cart from './Cart';
 import Profile from './Profile';
 import Shop from './Shop';
-import ProductList from './ProductList'; // Import ProductList component
-import Wishlist from './Wishlist'; // Import Wishlist component
- // Import RegistrationSuccess component
-
+import ProductList from './ProductList';
+import Wishlist from './Wishlist';
 import AuthForm from './AuthForm';
 import VendorRegistrationForm from './VendorRegistrationForm';
-import VendorProfile from './Vendorprofile'; // Import VendorProfile component
-import AddProductForm from './AddProductForm'; // Import AddProductForm component
-import { CartProvider } from './context/CartContext'; // Import CartProvider
+import VendorProfile from './Vendorprofile';
+import AddProductForm from './AddProductForm';
+import { CartProvider } from './context/CartContext';
 import './App.css';
-import './Tailwind.css'; // Import Tailwind styles if needed
+import './Tailwind.css';
 
 const App = () => {
   const [products, setProducts] = useState([]);
   const [user, setUser] = useState(null); // State for user login status
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login state
 
   useEffect(() => {
     fetchProducts();
@@ -38,9 +37,9 @@ const App = () => {
   };
 
   return (
-    <CartProvider> {/* Wrap the app in CartProvider for cart functionality */}
+    <CartProvider>
       <Router>
-        <Header user={user} setUser={setUser} /> {/* Pass user and setUser to Header */}
+        <Header user={user} setUser={setUser} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> {/* Pass setIsLoggedIn to Header */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop products={products} />} />
@@ -50,13 +49,15 @@ const App = () => {
             path="/category/:categoryName" 
             element={<ProductList products={products.filter(product => product.category === window.location.pathname.split("/").pop())} />} 
           />
-          <Route path="/wishlist" element={<Wishlist userId={user ? user._id : null} />} /> {/* Pass userId to Wishlist */}
+          <Route path="/wishlist" element={<Wishlist userId={user ? user._id : null} />} />
           <Route path="/profile" element={<Profile />} />
-          
-          <Route path="/login-customer" element={<AuthForm />} /> {/* Customer login route */}
-          <Route path="/vendorregistrationform" element={<VendorRegistrationForm />} /> {/* Vendor registration form */}
-          <Route path="/vendorprofile" element={<VendorProfile />} /> {/* Vendor profile */}
-          <Route path="/addproductform" element={<AddProductForm />} /> {/* Vendor add product form */}
+          <Route 
+            path="/login-customer" 
+            element={<AuthForm setIsLoggedIn={setIsLoggedIn} />} // Pass setIsLoggedIn to AuthForm 
+          />
+          <Route path="/vendorregistrationform" element={<VendorRegistrationForm />} />
+          <Route path="/vendorprofile" element={<VendorProfile />} />
+          <Route path="/addproductform" element={<AddProductForm />} />
         </Routes>
       </Router>
     </CartProvider>
