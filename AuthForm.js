@@ -1,9 +1,10 @@
+// client/src/AuthForm.js
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./AuthForm.css";
 
-const AuthForm = () => {
+const AuthForm = ({ setIsLoggedIn }) => { // Receive setIsLoggedIn as a prop
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
     name: "",
@@ -12,6 +13,7 @@ const AuthForm = () => {
     password: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -21,36 +23,30 @@ const AuthForm = () => {
 
   const validateForm = () => {
     if (isLogin) {
-      // Validation for login
       if (!formData.email || !formData.password) {
         return "Email and password are required for login.";
       }
     } else {
-      // Validation for signup
       const { name, phone, password } = formData;
-      
       const phoneRegex = /^[0-9]{10}$/;
       if (!phoneRegex.test(phone)) {
         return "Invalid phone number. Please enter a valid 10-digit phone number.";
       }
-
       if (!name || !phone || !password) {
         return "Name, phone number, and password are required for signup.";
       }
-
-      // Check for strong password
       const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
       if (!passwordRegex.test(password)) {
         return "Weak password. It must be at least 8 characters long, contain upper and lower case letters, a number, and a special character.";
       }
     }
-
     return "";
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage("");
+    setSuccessMessage("");
 
     const validationError = validateForm();
     if (validationError) {
@@ -67,8 +63,15 @@ const AuthForm = () => {
       console.log(res.data);
       localStorage.setItem("userId", res.data.userId);
 
+      // Show success message
+      setSuccessMessage(isLogin ? "You have successfully logged in!" : "You have successfully registered! Login to continue");
+
+      // Update login state on successful login
       if (isLogin) {
-        navigate("/"); // Redirect to home page after login
+        setIsLoggedIn(true); // Set login state to true on successful login
+        setTimeout(() => {
+          navigate("/"); 
+        }, 2000);
       }
     } catch (err) {
       console.error(err.response ? err.response.data : err.message);
@@ -78,7 +81,8 @@ const AuthForm = () => {
 
   const handleToggle = (mode) => {
     setIsLogin(mode);
-    setErrorMessage(""); // Clear any error messages when switching modes
+    setErrorMessage("");
+    setSuccessMessage("");
     setFormData({
       name: "",
       email: "",
@@ -91,15 +95,12 @@ const AuthForm = () => {
     <div className="auth-container">
       <div className="toggle-container">
         <div className={`toggle-switch ${isLogin ? "login" : "signup"}`}>
-          <button onClick={() => handleToggle(true)} className="toggle-btn">
-            Login
-          </button>
-          <button onClick={() => handleToggle(false)} className="toggle-btn">
-            Signup
-          </button>
+          <button onClick={() => handleToggle(true)} className="toggle-btn">Login</button>
+          <button onClick={() => handleToggle(false)} className="toggle-btn">Signup</button>
         </div>
       </div>
       {errorMessage && <div className="error-message">{errorMessage}</div>}
+      {successMessage && <div className="success-message">{successMessage}</div>}
       <div className="form-container">
         {isLogin ? (
           <form className="login-form" onSubmit={handleSubmit}>
